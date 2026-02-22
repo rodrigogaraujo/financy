@@ -1,0 +1,9 @@
+{
+  "name": "financy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal finance management application",
+  "scripts": {
+    "codegen": "graphql-codegen --config codegen.ts"
+  }
+}

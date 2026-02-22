@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      target: prod
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=file:./data/financy.db
+      - JWT_SECRET=${JWT_SECRET:-super-secret-key-change-me}
+      - PORT=4000
+    volumes:
+      - db-data:/app/prisma/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      target: prod
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  db-data:
